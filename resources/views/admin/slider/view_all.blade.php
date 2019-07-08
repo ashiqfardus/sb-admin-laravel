@@ -29,15 +29,15 @@
                         </tr>
                         </tfoot>
                         <tbody>
+
+                        @foreach($sliders as $post)
                         <tr>
-
-
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
+                                <td>{{$n++}}</td>
+                                <td>{{$post->title}}</td>
+                                <td><img src="{{'../image/slider/'.$post->image}}" style="height: 100px; width: 100px;"></td>
+                                <td>Action</td>
                         </tr>
-
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -13,7 +13,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('admin.slider.view_all')->with('sliders', Slider::all());
+        $n=1;
+        return view('admin.slider.view_all')->with('sliders', Slider::all())->with('n',$n);
     }
 
     /**
