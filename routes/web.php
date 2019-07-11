@@ -36,8 +36,16 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'as'=>'slider.store'
     ]);
 
-    Route::get('/show',[
+    Route::get('slider/show',[
        'uses'=>'SliderController@index',
        'as'=>'slider.index'
+    ]);
+    Route::get('slider/edit/{id}',[
+        'uses'=>'SliderController@edit',
+        'as'=>'slider.edit'
+    ]);
+    Route::get('slider/delete/{id}',[
+        'uses'=>'SliderController@index',
+        'as'=>'slider.delete'
     ]);
 });

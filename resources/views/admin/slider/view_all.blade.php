@@ -34,8 +34,11 @@
                         <tr>
                                 <td>{{$n++}}</td>
                                 <td>{{$post->title}}</td>
-                                <td><img src="{{'../image/slider/'.$post->image}}" style="height: 100px; width: 100px;"></td>
-                                <td>Action</td>
+                                <td><img src="{{'/image/slider/'.$post->image}}" style="height: 80px; width: 80px;"></td>
+                                <td>
+                                    <a href="{{route('slider.edit',['id'=>$post->id])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{route('slider.delete',['id'=>$post->id])}}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></a>
+                                </td>
                         </tr>
                         @endforeach
                         </tbody>
