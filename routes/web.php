@@ -61,4 +61,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
        'uses'=>'LogoController@index',
        'as'=>'logo.index'
     ]);
+
+    Route::get('logo/edit/{id}',[
+        'uses'=>'LogoController@edit',
+        'as'=>'logo.edit'
+    ]);
+
+    Route::post('logo/update/{id}',[
+        'uses'=>'LogoController@update',
+        'as'=>'logo.update'
+    ]);
 });
