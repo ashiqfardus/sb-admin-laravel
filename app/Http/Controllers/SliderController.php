@@ -73,7 +73,8 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        
+        $slider=Slider::find($id);
+        return view('admin.slider.edit')->with('slider',$slider);
     }
 
     /**
@@ -85,7 +86,24 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post=Slider::find($id);
+        $this->validate($request,[
+           'title'=>'required'
+        ]);
+
+        if ($request->hasFile('image'))
+        {
+            $image=$request->image;
+            $image_new_name=time().$image->getClientOriginalName();
+            $image->move('image/slider',$image_new_name);
+            $post->image=$image_new_name;
+        }
+        $post->title=$request->title;
+        $post->save();
+
+
+        Session::flash('success','Slider updated successfully');
+        return redirect()->route('slider.index');
     }
 
     /**
@@ -96,6 +114,9 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $slider=Slider::find($id);
+        $slider->delete();
+        Session::flash('success','Slider Deleted successfully');
+        return redirect()->back();
     }
 }

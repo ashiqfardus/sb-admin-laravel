@@ -26,6 +26,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
 
+    //Slider Routes
+
     Route::get('/slider/create',[
         'uses'=>'SliderController@create',
         'as'=>'slider.create'
@@ -44,8 +46,19 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'uses'=>'SliderController@edit',
         'as'=>'slider.edit'
     ]);
+    Route::post('slider/update/{id}',[
+        'uses'=>'SliderController@update',
+        'as'=>'slider.update'
+    ]);
+
     Route::get('slider/delete/{id}',[
-        'uses'=>'SliderController@index',
+        'uses'=>'SliderController@destroy',
         'as'=>'slider.delete'
+    ]);
+
+    //Logo Routes
+    ROute::get('logo/index',[
+       'uses'=>'LogoController@index',
+       'as'=>'logo.index'
     ]);
 });
