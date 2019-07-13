@@ -116,6 +116,7 @@ class SliderController extends Controller
     {
         $slider=Slider::find($id);
         $slider->delete();
+        unlink('image/slider/'.$slider->image);
         Session::flash('success','Slider Deleted successfully');
         return redirect()->back();
     }

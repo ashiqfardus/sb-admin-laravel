@@ -71,4 +71,20 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'uses'=>'LogoController@update',
         'as'=>'logo.update'
     ]);
+
+    //Contact Routes
+    Route::get('contact/index',[
+        'uses'=>'ContactController@index',
+        'as'=>'contact.index'
+    ]);
+
+    Route::get('contact/edit/{id}',[
+        'uses'=>'ContactController@edit',
+        'as'=>'contact.edit'
+    ]);
+
+    Route::post('contact/update/{id}',[
+        'uses'=>'ContactController@update',
+        'as'=>'contact.update'
+    ]);
 });

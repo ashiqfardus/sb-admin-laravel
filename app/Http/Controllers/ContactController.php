@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Contact;
+use Session;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -13,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.contact.index')->with('contacts',Contact::all());
     }
 
     /**
@@ -56,7 +57,9 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact=Contact::find($id);
+
+        return view('admin.contact.edit')->with('contacts',$contact);
     }
 
     /**
@@ -68,7 +71,22 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contact=Contact::find($id);
+        $this->validate($request,[
+           'address'=>'required',
+            'mobile'=>'required',
+            'email'=>'required'
+        ]);
+
+        $contact->address=$request->address;
+        $contact->phone=$request->phone;
+        $contact->mobile=$request->mobile;
+        $contact->email=$request->email;
+        $contact->save();
+
+
+        Session::flash('success','Contact settings updated successfully');
+        return redirect()->route('contact.index');
     }
 
     /**
