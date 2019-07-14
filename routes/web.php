@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');
 
 
 //Admin Routes
@@ -87,4 +87,21 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'uses'=>'ContactController@update',
         'as'=>'contact.update'
     ]);
+
+
+    //Social Link routes
+    Route::get('social/index',[
+       'uses'=>'SocialController@index',
+       'as'=>'social.index'
+    ]);
+    Route::get('social/edit/{id}',[
+        'uses'=>'SocialController@edit',
+        'as'=>'social.edit'
+    ]);
+
+    Route::post('social/update/{id}',[
+        'uses'=>'SocialController@update',
+        'as'=>'social.update'
+    ]);
+
 });

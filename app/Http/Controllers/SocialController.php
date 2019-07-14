@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+Use App\Social;
+Use Session;
 use Illuminate\Http\Request;
 
 class SocialController extends Controller
@@ -13,7 +14,7 @@ class SocialController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.social.index')->with('social',Social::all());
     }
 
     /**
@@ -56,7 +57,9 @@ class SocialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $social=Social::find($id);
+        return view('admin.social.edit')->with('social',$social);
+
     }
 
     /**
@@ -68,7 +71,17 @@ class SocialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $social=Social::find($id);
+        $social->facebook=$request->facebook;
+        $social->instagram=$request->instagram;
+        $social->google=$request->google;
+        $social->youtube=$request->youtube;
+        $social->twiter=$request->twiter;
+        $social->linkedin=$request->linkedin;
+
+        $social->save();
+        Session::flash('success','Social settings Updated');
+        return redirect()->route('social.index');
     }
 
     /**
