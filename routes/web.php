@@ -132,4 +132,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'uses'=>'AboutController@index',
         'as'=>'about.index'
     ]);
+
+    Route::get('about/edit/{id}',[
+        'uses'=>'AboutController@edit',
+        'as'=>'about.edit'
+    ]);
+
+    Route::post('about/update/{id}',[
+        'uses'=>'AboutController@update',
+        'as'=>'about.update'
+    ]);
 });

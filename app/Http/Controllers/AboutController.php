@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+Use Session;
+use App\About;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -13,7 +14,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.about.index')->with('about',About::all());
     }
 
     /**
@@ -56,7 +57,9 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        //
+        $about=About::find($id);
+        return view('admin.about.edit')->with('about',$about);
+
     }
 
     /**
@@ -68,7 +71,11 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $about=About::find($id);
+        $about->description=$request->description;
+        $about->save();
+        Session::flash('success',"About Us Updated");
+        return redirect()->route('about.index');
     }
 
     /**
