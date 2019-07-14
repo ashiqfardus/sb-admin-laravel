@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
+use App\Color;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -13,7 +14,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.color.index')->with('color',Color::all());
     }
 
     /**
@@ -80,5 +81,41 @@ class ColorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function primary(Request $request, $id)
+    {
+        $primary=Color::find($id);
+
+
+        $primary->theme_primary=$request->theme_primary;
+        $primary->save();
+
+        Session::flash('success','Primary color updated');
+        return redirect()->back();
+    }
+
+    public function secondary(Request $request, $id)
+    {
+        $secondary=Color::find($id);
+
+
+        $secondary->theme_secondary=$request->theme_secondary;
+        $secondary->save();
+
+        Session::flash('success','Secondary color updated');
+        return redirect()->back();
+    }
+
+    public function header(Request $request, $id)
+    {
+        $header=Color::find($id);
+
+
+        $header->header_footer=$request->theme_header;
+        $header->save();
+
+        Session::flash('success','Header & Footer color updated');
+        return redirect()->back();
     }
 }

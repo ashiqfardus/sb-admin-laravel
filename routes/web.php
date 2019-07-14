@@ -104,4 +104,32 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'as'=>'social.update'
     ]);
 
+
+    //Color Routes
+    Route::get('color/index',[
+       'uses'=>'ColorController@index',
+       'as'=>'color.index'
+    ]);
+
+    Route::post('color/primary/{id}',[
+        'uses'=>'ColorController@primary',
+        'as'=>'color.primary'
+    ]);
+
+    Route::post('color/secondary/{id}',[
+        'uses'=>'ColorController@secondary',
+        'as'=>'color.secondary'
+    ]);
+
+    Route::post('color/header/{id}',[
+        'uses'=>'ColorController@header',
+        'as'=>'color.header'
+    ]);
+
+    //About Us Routes
+
+    Route::get('about/index',[
+        'uses'=>'AboutController@index',
+        'as'=>'about.index'
+    ]);
 });

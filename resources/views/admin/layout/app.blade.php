@@ -87,7 +87,8 @@
                     <a class="collapse-item" href="{{route('logo.index')}}">Logo</a>
                     <a class="collapse-item" href="{{route('contact.index')}}">Contact Info</a>
                     <a class="collapse-item" href="{{route('social.index')}}">Social Link</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="collapse-item" href="{{route('color.index')}}">Color</a>
+                    <a class="collapse-item" href="{{route('about.index')}}">About Us</a>
                 </div>
             </div>
         </li>
