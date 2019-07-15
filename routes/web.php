@@ -142,4 +142,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function() {
         'uses'=>'AboutController@update',
         'as'=>'about.update'
     ]);
+
+
 });
